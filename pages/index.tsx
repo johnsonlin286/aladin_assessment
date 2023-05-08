@@ -14,9 +14,8 @@ type DataType = {
 
 export default function Home() {
   const isMounted = useRef(false);
-  // const paginationElm = useRef<HTMLDivElement>(null);
+  const offset = useRef(0);
   const [data, setData] = useState<Array<DataType>>([]);
-  const [offset, setOffset] = useState(0);
   const [showPagination, setShowPagination] = useState(false);
   const observerOptions = useMemo(() => {
     return {
@@ -38,10 +37,10 @@ export default function Home() {
 
   const fetchData = async () => {
     setShowPagination(false);
-    const result: any = await fetchPokemon(offset, 30);
+    const result: any = await fetchPokemon(offset.current, 30);
     if (result.length > 0) {
       setData(prev => [...prev, ...result]);
-      setOffset(prev => prev + result.length);
+      offset.current += result.length;
       setShowPagination(true);
     }
   }
@@ -77,11 +76,12 @@ export default function Home() {
                   ))
                 }
               </div>
-              {
-                showPagination ? <div id="pagination" className="w-full h-6" /> : <Icon icon={loadingIcon} className="w-8 h-8 text-red-400 my-6" />
-              }
+
             </>
           )
+        }
+        {
+          showPagination ? <div id="pagination" className="w-full h-6" /> : <Icon icon={loadingIcon} className="w-8 h-8 text-red-400 my-6" />
         }
       </div>
     </Layout>

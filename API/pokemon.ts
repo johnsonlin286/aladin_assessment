@@ -2,8 +2,6 @@ import axios from "axios";
 
 export const fetchPokemon = async (offset: number, limit: number) => {
   try {
-    console.log("FUCK");
-    // https://pokeapi.co/api/v2/pokemon?offset=20&limit=20
     const result = await axios.get(
       `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`
     );
@@ -23,27 +21,27 @@ const fetchImage = async (data: { name: string; url: string }[]) => {
     promise.push(axios.get(url));
   }
   const pokemons: { id: number; name: string; sprite: string }[] = [];
-  await Promise.all(promise).then((result) => {
-    result.map((item) =>
-      pokemons.push({
-        id: item.data.id,
-        name: item.data.name,
-        sprite: item.data.sprites.front_default,
-      })
-    );
-  });
-  return pokemons;
+  return await Promise.all(promise)
+    .then((result) => {
+      result.map((item) =>
+        pokemons.push({
+          id: item.data.id,
+          name: item.data.name,
+          sprite: item.data.sprites.front_default,
+        })
+      );
+      return pokemons;
+    })
+    .catch((error) => {
+      console.error(error);
+    });
 };
 
-export const fetchDetail = async (id: number) => {
-  return new Promise((resolve, reject) => {
-    axios
-      .get(`https://pokeapi.co/api/v2/pokemon/${id}`)
-      .then(({ data }) => {
-        resolve(data);
-      })
-      .catch((error) => {
-        reject(error);
-      });
-  });
+export const fetchDetail = async (name: string) => {
+  try {
+    const result = await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`);
+    return result.data;
+  } catch (error) {
+    console.error(error);
+  }
 };
