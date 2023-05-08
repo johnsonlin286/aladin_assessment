@@ -20,6 +20,8 @@
     "typescript": "5.0.4"
   },
   "devDependencies": {
+    "@iconify/icons-eos-icons": "^1.2.6",
+    "@iconify/react": "^4.1.0",
     "autoprefixer": "^10.4.14",
     "postcss": "^8.4.23",
     "tailwindcss": "^3.3.2"
