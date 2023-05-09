@@ -2,8 +2,9 @@ import axios from "axios";
 
 export const fetchPokemon = async (offset: number, limit: number) => {
   try {
+    const newLimit = offset < 150 ? 30 : 1;
     const result = await axios.get(
-      `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`
+      `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${newLimit}`
     );
     if (result?.data?.results?.length > 0) {
       const pokemons = await fetchImage(result.data.results);

@@ -6,6 +6,8 @@ import ListItem from "../components/ListItem";
 import { Icon } from '@iconify/react';
 import loadingIcon from '@iconify/icons-eos-icons/loading';
 
+const enviroment = process.env.ENVIROMENT;
+
 type DataType = {
   id: number,
   name: string,
@@ -13,7 +15,7 @@ type DataType = {
 }
 
 export default function Home() {
-  // const isMounted = useRef(false);
+  const isMounted = useRef(false);
   const offset = useRef(0);
   const [data, setData] = useState<Array<DataType>>([]);
   const [showPagination, setShowPagination] = useState(false);
@@ -26,16 +28,19 @@ export default function Home() {
 
   useEffect(() => {
     // page mounted
-    // if (!isMounted.current) {
-    //   isMounted.current = true;
-    //   return;
-    // };
+    if (enviroment === 'development' && !isMounted.current) {
+      isMounted.current = true;
+      return;
+    };
     if (data.length <= 0) {
       fetchData();
     }
-  }, []);
+  }, [isMounted]);
 
   const fetchData = async () => {
+    if (data.length > 150) {
+      return;
+    }
     setShowPagination(false);
     const result: any = await fetchPokemon(offset.current, 30);
     if (result.length > 0) {
