@@ -11,8 +11,8 @@ const HeaderNav = () => {
         <nav className="ml-8">
           <ul className="flex list-none">
             <li>
-              <Link href={"/#"} className="text-lg font-bold text-yellow-300">
-                My Pokémons
+              <Link href={"/inventory"} className="inline-block text-lg font-bold text-yellow-400 transition-transform underline-offset-8 hover:underline">
+                My Pokémon
               </Link>
             </li>
           </ul>

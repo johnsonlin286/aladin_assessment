@@ -43,10 +43,8 @@ const PillType: React.FC<Props> = ({ value, className }) => {
         return "bg-cyan-300 text-white";
       case "ghost":
         return "bg-violet-800 text-white";
-      case "normal":
-        return "bg-white text-black";
       default:
-        return null;
+        return "bg-white text-black";
     }
   }, [value])
 

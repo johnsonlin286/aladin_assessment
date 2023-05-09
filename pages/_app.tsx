@@ -1,6 +1,10 @@
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
 
+import { Provider } from 'react-redux';
+import store from '../stores/redux';
+import ToastContextProvider from '../stores/context/toastContext';
+
 import '../styles/globals.css'
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -11,7 +15,11 @@ export default function App({ Component, pageProps }: AppProps) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Component {...pageProps} />
+      <Provider store={store}>
+        <ToastContextProvider>
+          <Component {...pageProps} />
+        </ToastContextProvider>
+      </Provider>
     </>
   )
 }

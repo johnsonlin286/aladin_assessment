@@ -1,3 +1,39 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.toast {
+  top: 80px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  opacity: 1;
+  animation: toastIn .2s ease-in-out forwards;
+}
+
+.toast.hide {
+  top: 0;
+  opacity: 0;
+  animation: toastOut .2s ease-in-out forwards;
+}
+
+@keyframes toastIn {
+  0% {
+    top: 0;
+    opacity: 0;
+  }
+  100% {
+    top: 80px;
+    opacity: 1;
+  }
+}
+
+@keyframes toastOut {
+  0% {
+    top: 80px;
+    opacity: 1;
+  }
+  100% {
+    top: 0;
+    opacity: 0;
+  }
+}
