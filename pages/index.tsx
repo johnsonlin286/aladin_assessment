@@ -13,7 +13,7 @@ type DataType = {
 }
 
 export default function Home() {
-  const isMounted = useRef(false);
+  // const isMounted = useRef(false);
   const offset = useRef(0);
   const [data, setData] = useState<Array<DataType>>([]);
   const [showPagination, setShowPagination] = useState(false);
@@ -26,14 +26,14 @@ export default function Home() {
 
   useEffect(() => {
     // page mounted
-    if (!isMounted.current) {
-      isMounted.current = true;
-      return;
-    };
+    // if (!isMounted.current) {
+    //   isMounted.current = true;
+    //   return;
+    // };
     if (data.length <= 0) {
       fetchData();
     }
-  }, [isMounted]);
+  }, []);
 
   const fetchData = async () => {
     setShowPagination(false);
