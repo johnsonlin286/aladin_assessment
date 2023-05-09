@@ -68,7 +68,7 @@ export default function Home() {
 
   return (
     <Layout title="Home Page">
-      <div className="home-page container flex flex-col justify-center items-center">
+      <div className="home-page container flex flex-col justify-center items-center" data-testid="homepage">
         {
           data.length > 0 && (
             <>

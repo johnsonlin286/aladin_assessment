@@ -18,7 +18,7 @@ const Layout: React.FC<Props> = ({ title, children }) => {
       <Head>
         <title>{`Pokemon ${title ? `- ${title}` : ''}`}</title>
       </Head>
-      <main className={`${inter.className} relative pt-[95px]`}>
+      <main data-testid="layout" className={`${inter.className} relative pt-[95px]`}>
         <HeaderNav />
         <Toast />
         {children}

@@ -40,7 +40,7 @@ const Toast = () => {
   }
 
   return (
-    <div ref={toastElm} className={`toast absolute w-10/12 top-20 left-1/2 -translate-x-1/2 ${color} text-neutral-800 rounded-md shadow-2xl p-3 z-10`}>
+    <div ref={toastElm} className={`toast absolute w-10/12 top-20 left-1/2 -translate-x-1/2 ${color} text-neutral-800 rounded-md shadow-2xl p-3 z-10`} data-testid="toast">
       {data?.message}
     </div>
   );

@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const HeaderNav = () => {
   return (
-    <header className="fixed w-full top-0 left-0 bg-red-500 py-4">
+    <header className="fixed w-full top-0 left-0 bg-red-500 py-4" data-testid="headernav">
       <div className="container flex items-center">
         <Link href={"/"}>
           <Image src={'/images/logo.png'} alt="LOGO" width={60} height={60} />
