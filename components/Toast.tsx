@@ -11,7 +11,7 @@ const Toast = () => {
       case "info":
         return "bg-sky-400";
       case "warning":
-        return "bg-ember-400";
+        return "bg-amber-400";
       case "success":
         return "bg-green-400";
       case "danger":

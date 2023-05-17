@@ -1,8 +1,10 @@
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
+// import Store, { persistor } from  "../stores/redux";
 
 import { Provider } from 'react-redux';
-import store from '../stores/redux';
+import store, { persistor } from '../stores/redux';
+import { PersistGate } from "redux-persist/integration/react";
 import ToastContextProvider from '../stores/context/toastContext';
 
 import '../styles/globals.css'
@@ -16,9 +18,11 @@ export default function App({ Component, pageProps }: AppProps) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Provider store={store}>
-        <ToastContextProvider>
-          <Component {...pageProps} />
-        </ToastContextProvider>
+        <PersistGate loading={null} persistor={persistor}>
+          <ToastContextProvider>
+            <Component {...pageProps} />
+          </ToastContextProvider>
+        </PersistGate>
       </Provider>
     </>
   )

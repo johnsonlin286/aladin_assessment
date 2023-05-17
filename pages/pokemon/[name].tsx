@@ -61,6 +61,12 @@ const PokemonPage = () => {
       updateToast({ color: 'danger', message: 'No more space for new Pokémon!' });
       return;
     }
+    if (!data) return;
+    const isExist = pokemons.find((poke: DataType) => poke.id === data.id);
+    if (isExist) {
+      updateToast({ color: 'warning', message: 'You already catch this Pokémon!' });
+      return;
+    }
     const payload = {
       id: data?.id,
       name: data?.name,
